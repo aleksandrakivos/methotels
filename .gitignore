@@ -11,6 +11,14 @@
 npm-debug.log
 yarn-error.log
 
+# Agents
+.agents/
+.cursor/
+skills-lock.json
+
+# Documentation
+docs/
+
 # IDEs and editors
 .idea/
 .project
