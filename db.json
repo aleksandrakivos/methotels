@@ -1,0 +1,21 @@
+{
+  "rooms": [
+    {
+      "name": "test",
+      "type": "studio",
+      "price": 50,
+      "bedCount": 2,
+      "description": "TEST",
+      "id": "9hulISuobU0"
+    },
+    {
+      "name": "rest",
+      "type": "porodicni",
+      "price": 100,
+      "bedCount": 12,
+      "description": "asdasd",
+      "id": "ygicy-X15N4"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

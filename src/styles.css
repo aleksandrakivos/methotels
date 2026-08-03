@@ -1,3 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  --color-brand: #c41e3a;
+  --color-brand-dark: #9e1830;
+  --color-brand-muted: #fef2f2;
+}
+
+body {
+  @apply bg-neutral-50 text-neutral-900 antialiased;
+}
+
+main {
+  @apply max-w-5xl mx-auto;
+}

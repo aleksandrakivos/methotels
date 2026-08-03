@@ -1,0 +1,94 @@
+<form class="grid gap-2 sm:grid-cols-2" (submit)="onSubmit($event)">
+  <div class="sm:col-span-2">
+    <label for="room-name" class="block text-xs font-medium text-neutral-600 mb-0.5">
+      Naziv
+    </label>
+    <input
+      id="room-name"
+      type="text"
+      [formField]="roomForm.name"
+      [attr.aria-invalid]="showFieldError(roomForm.name())"
+      [attr.aria-describedby]="showFieldError(roomForm.name()) ? 'room-name-error' : null"
+      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+    />
+    @if (showFieldError(roomForm.name())) {
+      <p id="room-name-error" class="mt-0.5 text-xs text-brand">{{ roomForm.name().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div>
+    <label for="room-type" class="block text-xs font-medium text-neutral-600 mb-0.5">
+      Tip sobe
+    </label>
+    <select
+      id="room-type"
+      [formField]="roomForm.type"
+      [attr.aria-invalid]="showFieldError(roomForm.type())"
+      [attr.aria-describedby]="showFieldError(roomForm.type()) ? 'room-type-error' : null"
+      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+    >
+      <option value="">Izaberite tip</option>
+      @for (roomType of roomTypes; track roomType) {
+        <option [value]="roomType">{{ roomTypeLabels[roomType] }}</option>
+      }
+    </select>
+    @if (showFieldError(roomForm.type())) {
+      <p id="room-type-error" class="mt-0.5 text-xs text-brand">{{ roomForm.type().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div>
+    <label for="room-price" class="block text-xs font-medium text-neutral-600 mb-0.5">
+      Cena (EUR)
+    </label>
+    <input
+      id="room-price"
+      type="number"
+      [formField]="roomForm.price"
+      [attr.aria-invalid]="showFieldError(roomForm.price())"
+      [attr.aria-describedby]="showFieldError(roomForm.price()) ? 'room-price-error' : null"
+      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+    />
+    @if (showFieldError(roomForm.price())) {
+      <p id="room-price-error" class="mt-0.5 text-xs text-brand">{{ roomForm.price().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div>
+    <label for="room-beds" class="block text-xs font-medium text-neutral-600 mb-0.5">
+      Broj kreveta
+    </label>
+    <input
+      id="room-beds"
+      type="number"
+      [formField]="roomForm.bedCount"
+      [attr.aria-invalid]="showFieldError(roomForm.bedCount())"
+      [attr.aria-describedby]="showFieldError(roomForm.bedCount()) ? 'room-beds-error' : null"
+      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+    />
+    @if (showFieldError(roomForm.bedCount())) {
+      <p id="room-beds-error" class="mt-0.5 text-xs text-brand">{{ roomForm.bedCount().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="sm:col-span-2">
+    <label for="room-description" class="block text-xs font-medium text-neutral-600 mb-0.5">
+      Opis
+    </label>
+    <textarea
+      id="room-description"
+      rows="2"
+      [formField]="roomForm.description"
+      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+    ></textarea>
+  </div>
+
+  <div class="sm:col-span-2">
+    <button
+      type="submit"
+      class="rounded-sm bg-brand px-3 py-1 text-sm font-medium text-white hover:bg-brand-dark focus:outline-none focus:ring-1 focus:ring-brand focus:ring-offset-1"
+    >
+      Dodaj sobu
+    </button>
+  </div>
+</form>
