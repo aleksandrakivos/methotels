@@ -14,12 +14,48 @@
   </header>
 
   <main class="px-3 py-3 space-y-3">
+    <app-nav-bar
+      [activeSection]="activeSection()"
+      (sectionChange)="activeSection.set($event)"
+    />
+
+    <section
+      class="border border-neutral-200 bg-white rounded-sm p-3"
+      aria-live="polite"
+      role="tabpanel"
+      [id]="'panel-' + activeSection()"
+      [attr.aria-labelledby]="'section-heading-' + activeSection()"
+    >
+      <h2
+        [id]="'section-heading-' + activeSection()"
+        class="text-sm font-semibold text-neutral-900 mb-2"
+      >
+        @switch (activeSection()) {
+          @case ('ponuda') { Ponuda }
+          @case ('preporuka') { Preporuka }
+          @case ('o-nama') { O nama }
+        }
+      </h2>
+
+      @switch (activeSection()) {
+        @case ('ponuda') {
+          <app-offer-list />
+        }
+        @case ('preporuka') {
+          <app-recommendation-list />
+        }
+        @case ('o-nama') {
+          <app-about />
+        }
+      }
+    </section>
+
     <section
       class="border border-neutral-200 bg-white rounded-sm p-3"
       aria-labelledby="room-form-heading"
     >
       <h2 id="room-form-heading" class="text-sm font-semibold text-neutral-900 mb-2">
-        Dodaj novu sobu
+        Dodaj novi smeštaj
       </h2>
       <app-room-form (roomSubmitted)="addNewRoom($event)" />
     </section>
