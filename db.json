@@ -1,20 +1,20 @@
 {
   "rooms": [
     {
-      "name": "test",
-      "type": "studio",
-      "price": 50,
-      "bedCount": 2,
-      "description": "TEST",
-      "id": "9hulISuobU0"
+      "name": "Apartman 1 ",
+      "type": "luksuzni",
+      "price": 200,
+      "bedCount": 3,
+      "description": "Luksuzni apartman sa jednim king size krevetom i jednim singl lezajem sa pogledom na reku",
+      "id": "osKDAJXunls"
     },
     {
-      "name": "rest",
-      "type": "porodicni",
-      "price": 100,
-      "bedCount": 12,
-      "description": "asdasd",
-      "id": "ygicy-X15N4"
+      "name": "Apartman 2",
+      "type": "studio",
+      "price": 60,
+      "bedCount": 1,
+      "description": "Studio sa jenim bracnim lezajem",
+      "id": "-_jkzru6tD0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

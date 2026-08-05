@@ -71,6 +71,107 @@
     }
   </div>
 
+  <fieldset class="sm:col-span-2">
+    <legend class="text-xs font-medium text-neutral-600 mb-0.5">Dodatne usluge</legend>
+
+    <div class="flex flex-row flex-wrap gap-x-4 gap-y-2">
+      <div class="min-w-max">
+        <label for="room-bazen" class="inline-flex items-center gap-1.5 text-sm text-neutral-900">
+          <input
+            id="room-bazen"
+            type="checkbox"
+            [formField]="roomForm.bazen"
+            class="rounded-sm border-neutral-300 text-brand focus:ring-brand"
+          />
+          Bazen
+        </label>
+        <p
+          class="mt-0.5 text-xs text-neutral-600"
+          [class.invisible]="!formModel().bazen"
+          [attr.aria-hidden]="!formModel().bazen"
+        >
+          Vasa cena je uvecana za 25 eura
+        </p>
+      </div>
+
+      <div class="min-w-max">
+        <label for="room-mini-bar" class="inline-flex items-center gap-1.5 text-sm text-neutral-900">
+          <input
+            id="room-mini-bar"
+            type="checkbox"
+            [formField]="roomForm.miniBar"
+            class="rounded-sm border-neutral-300 text-brand focus:ring-brand"
+          />
+          Mini bar
+        </label>
+        <p
+          class="mt-0.5 text-xs text-neutral-600"
+          [class.invisible]="!formModel().miniBar"
+          [attr.aria-hidden]="!formModel().miniBar"
+        >
+          Vasa cena je uvecana za 15 eura
+        </p>
+      </div>
+
+      <div class="min-w-max">
+        <label for="room-sauna" class="inline-flex items-center gap-1.5 text-sm text-neutral-900">
+          <input
+            id="room-sauna"
+            type="checkbox"
+            [formField]="roomForm.sauna"
+            class="rounded-sm border-neutral-300 text-brand focus:ring-brand"
+          />
+          Sauna
+        </label>
+        <p
+          class="mt-0.5 text-xs text-neutral-600"
+          [class.invisible]="!formModel().sauna"
+          [attr.aria-hidden]="!formModel().sauna"
+        >
+          Vasa cena je uvecana za 20 eura
+        </p>
+      </div>
+
+      <div class="min-w-max">
+        <label for="room-konferencijska-sala" class="inline-flex items-center gap-1.5 text-sm text-neutral-900">
+          <input
+            id="room-konferencijska-sala"
+            type="checkbox"
+            [formField]="roomForm.konferencijskaSala"
+            class="rounded-sm border-neutral-300 text-brand focus:ring-brand"
+          />
+          Konferencijska sala
+        </label>
+        <p
+          class="mt-0.5 text-xs text-neutral-600"
+          [class.invisible]="!formModel().konferencijskaSala"
+          [attr.aria-hidden]="!formModel().konferencijskaSala"
+        >
+          Vasa cena je uvecana za 50 eura
+        </p>
+      </div>
+
+      <div class="min-w-max">
+        <label for="room-vecera" class="inline-flex items-center gap-1.5 text-sm text-neutral-900">
+          <input
+            id="room-vecera"
+            type="checkbox"
+            [formField]="roomForm.vecera"
+            class="rounded-sm border-neutral-300 text-brand focus:ring-brand"
+          />
+          Vecera
+        </label>
+        <p
+          class="mt-0.5 text-xs text-neutral-600"
+          [class.invisible]="!formModel().vecera"
+          [attr.aria-hidden]="!formModel().vecera"
+        >
+          Vasa cena je uvecana za 30 eura
+        </p>
+      </div>
+    </div>
+  </fieldset>
+
   <div class="sm:col-span-2">
     <label for="room-description" class="block text-xs font-medium text-neutral-600 mb-0.5">
       Opis
