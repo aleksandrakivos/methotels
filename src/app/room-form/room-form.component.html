@@ -71,33 +71,8 @@
     }
   </div>
 
-  <div>
-    <label for="room-nights" class="block text-xs font-medium text-neutral-600 mb-0.5">
-      Broj noći
-    </label>
-    <input
-      id="room-nights"
-      type="number"
-      [formField]="roomForm.numberOfNights"
-      [attr.aria-invalid]="showFieldError(roomForm.numberOfNights())"
-      [attr.aria-describedby]="showFieldError(roomForm.numberOfNights()) ? 'room-nights-error' : 'room-nights-price'"
-      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
-    />
-    @if (showFieldError(roomForm.numberOfNights())) {
-      <p id="room-nights-error" class="mt-0.5 text-xs text-brand">{{ roomForm.numberOfNights().errors()[0].message }}</p>
-    }
-    <p
-      id="room-nights-price"
-      class="mt-0.5 text-xs font-bold text-neutral-600"
-      [class.invisible]="calculatedPrice() === null"
-      [attr.aria-hidden]="calculatedPrice() === null"
-    >
-      Obračunata cena: {{ calculatedPrice() }} EUR
-    </p>
-  </div>
-
   <fieldset class="sm:col-span-2">
-    <legend class="text-xs font-medium text-neutral-600 mb-0.5">Dodatne usluge</legend>
+    <legend class="text-xs font-medium text-neutral-600 mb-0.5">Dodatne usluge (Cene po nocenju)</legend>
 
     <div class="flex flex-row flex-wrap gap-x-4 gap-y-2">
       <div class="min-w-max">
@@ -196,6 +171,31 @@
       </div>
     </div>
   </fieldset>
+
+  <div>
+    <label for="room-nights" class="block text-xs font-medium text-neutral-600 mb-0.5">
+      Broj noći
+    </label>
+    <input
+      id="room-nights"
+      type="number"
+      [formField]="roomForm.numberOfNights"
+      [attr.aria-invalid]="showFieldError(roomForm.numberOfNights())"
+      [attr.aria-describedby]="showFieldError(roomForm.numberOfNights()) ? 'room-nights-error' : 'room-nights-price'"
+      class="w-full rounded-sm border border-neutral-200 bg-white px-2 py-1 text-sm text-neutral-900 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+    />
+    @if (showFieldError(roomForm.numberOfNights())) {
+      <p id="room-nights-error" class="mt-0.5 text-xs text-brand">{{ roomForm.numberOfNights().errors()[0].message }}</p>
+    }
+    <p
+      id="room-nights-price"
+      class="mt-0.5 text-xs font-bold text-neutral-600"
+      [class.invisible]="calculatedPrice() === null"
+      [attr.aria-hidden]="calculatedPrice() === null"
+    >
+      Obračunata cena: {{ calculatedPrice() }} EUR
+    </p>
+  </div>
 
   <div class="sm:col-span-2">
     <label for="room-description" class="block text-xs font-medium text-neutral-600 mb-0.5">
