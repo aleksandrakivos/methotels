@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Room } from '../models/room.model';
 import { RoomItemComponent } from '../room-item/room-item.component';
 
@@ -9,4 +9,6 @@ import { RoomItemComponent } from '../room-item/room-item.component';
 })
 export class RoomListComponent {
   readonly rooms = input.required<Room[]>();
+  readonly editRoom = output<Room>();
+  readonly deleteRoom = output<Room>();
 }

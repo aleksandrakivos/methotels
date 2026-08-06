@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { getActiveAmenityLabels, ROOM_TYPE_LABELS, Room } from '../models/room.model';
 
 @Component({
@@ -11,9 +11,19 @@ import { getActiveAmenityLabels, ROOM_TYPE_LABELS, Room } from '../models/room.m
 })
 export class RoomItemComponent {
   readonly room = input.required<Room>();
+  readonly editRequested = output<Room>();
+  readonly deleteRequested = output<Room>();
 
   protected readonly roomTypeLabels = ROOM_TYPE_LABELS;
   protected readonly activeAmenities = computed(() =>
     getActiveAmenityLabels(this.room()).join(', ') || '—',
   );
+
+  protected requestEdit(): void {
+    this.editRequested.emit(this.room());
+  }
+
+  protected requestDelete(): void {
+    this.deleteRequested.emit(this.room());
+  }
 }

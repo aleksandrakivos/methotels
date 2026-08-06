@@ -1,11 +1,11 @@
-import { Component, computed, effect, inject, output, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import {
   form,
   FormField,
   required,
   validate,
 } from '@angular/forms/signals';
-import { RoomFormData, ROOM_TYPE_LABELS, ROOM_TYPES, RoomType } from '../models/room.model';
+import { Room, RoomFormData, ROOM_TYPE_LABELS, ROOM_TYPES, RoomType } from '../models/room.model';
 import { RoomService } from '../services/room.service';
 
 interface RoomFormModel {
@@ -36,6 +36,20 @@ const emptyFormModel = (): RoomFormModel => ({
   vecera: false,
 });
 
+const roomToFormModel = (room: Room): RoomFormModel => ({
+  name: room.name,
+  type: room.type,
+  price: room.price,
+  bedCount: room.bedCount,
+  numberOfNights: room.numberOfNights,
+  description: room.description,
+  bazen: room.bazen,
+  miniBar: room.miniBar,
+  sauna: room.sauna,
+  konferencijskaSala: room.konferencijskaSala,
+  vecera: room.vecera,
+});
+
 interface FormFieldState {
   touched: () => boolean;
   errors: () => unknown[];
@@ -49,7 +63,12 @@ interface FormFieldState {
 export class RoomFormComponent {
   private readonly roomService = inject(RoomService);
 
+  readonly editingRoom = input<Room | null>(null);
   readonly roomSubmitted = output<RoomFormData>();
+  readonly roomUpdated = output<{ id: string; data: RoomFormData }>();
+  readonly editCancelled = output<void>();
+
+  protected readonly isEditing = computed(() => this.editingRoom() !== null);
 
   protected readonly roomTypes = ROOM_TYPES;
   protected readonly roomTypeLabels = ROOM_TYPE_LABELS;
@@ -105,6 +124,16 @@ export class RoomFormComponent {
 
   constructor() {
     effect(() => {
+      const room = this.editingRoom();
+      if (room) {
+        this.roomForm().reset(roomToFormModel(room));
+        this.submitAttempted.set(false);
+      } else {
+        this.resetForm();
+      }
+    });
+
+    effect(() => {
       const name = this.formModel().name;
       if (name.length < 6) {
         console.log('Naziv sobe mora imati najmanje 6 karaktera.');
@@ -114,6 +143,10 @@ export class RoomFormComponent {
 
   protected showFieldError(field: FormFieldState): boolean {
     return (this.submitAttempted() || field.touched()) && field.errors().length > 0;
+  }
+
+  protected cancelEdit(): void {
+    this.editCancelled.emit();
   }
 
   onSubmit(event: Event): void {
@@ -131,7 +164,7 @@ export class RoomFormComponent {
       return;
     }
 
-    this.roomSubmitted.emit({
+    const formData: RoomFormData = {
       name: data.name,
       type: data.type as RoomType,
       price: data.price,
@@ -144,8 +177,15 @@ export class RoomFormComponent {
       sauna: data.sauna,
       konferencijskaSala: data.konferencijskaSala,
       vecera: data.vecera,
-    });
+    };
 
+    const editingRoom = this.editingRoom();
+    if (editingRoom) {
+      this.roomUpdated.emit({ id: editingRoom.id, data: formData });
+      return;
+    }
+
+    this.roomSubmitted.emit(formData);
     this.resetForm();
   }
 

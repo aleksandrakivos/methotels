@@ -26,6 +26,7 @@ export class HomeComponent {
 
   protected readonly activeSection = signal<HomeSection>('ponuda');
   protected readonly rooms = signal<Room[]>([]);
+  protected readonly editingRoom = signal<Room | null>(null);
 
   constructor() {
     afterNextRender(() => {
@@ -38,6 +39,34 @@ export class HomeComponent {
   addNewRoom(roomData: RoomFormData): void {
     this.roomService.addRoom(roomData).subscribe((room) => {
       this.rooms.update((list) => [...list, room]);
+    });
+  }
+
+  startEdit(room: Room): void {
+    this.editingRoom.set(room);
+  }
+
+  cancelEdit(): void {
+    this.editingRoom.set(null);
+  }
+
+  updateRoom({ id, data }: { id: string; data: RoomFormData }): void {
+    this.roomService.updateRoom(id, data).subscribe((room) => {
+      this.rooms.update((list) => list.map((item) => (item.id === id ? room : item)));
+      this.editingRoom.set(null);
+    });
+  }
+
+  deleteRoom(room: Room): void {
+    if (!confirm(`Da li ste sigurni da želite da obrišete "${room.name}"?`)) {
+      return;
+    }
+
+    this.roomService.deleteRoom(room.id).subscribe(() => {
+      this.rooms.update((list) => list.filter((item) => item.id !== room.id));
+      if (this.editingRoom()?.id === room.id) {
+        this.editingRoom.set(null);
+      }
     });
   }
 }

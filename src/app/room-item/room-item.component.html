@@ -6,3 +6,23 @@
 <td class="px-2 py-1 font-medium text-neutral-900 truncate">{{ room().totalPrice }} EUR</td>
 <td class="px-2 py-1 text-neutral-700 truncate">{{ room().bedCount }}</td>
 <td class="px-2 py-1 text-neutral-600 truncate">{{ room().description }}</td>
+<td class="px-2 py-1">
+  <div class="flex flex-wrap gap-1">
+    <button
+      type="button"
+      (click)="requestEdit()"
+      [attr.aria-label]="'Izmeni ' + room().name"
+      class="rounded-sm border border-neutral-200 bg-white px-2 py-0.5 text-xs font-medium text-neutral-700 hover:bg-brand-muted focus:outline-none focus:ring-1 focus:ring-brand"
+    >
+      Izmeni
+    </button>
+    <button
+      type="button"
+      (click)="requestDelete()"
+      [attr.aria-label]="'Obriši ' + room().name"
+      class="rounded-sm border border-brand bg-white px-2 py-0.5 text-xs font-medium text-brand hover:bg-brand-muted focus:outline-none focus:ring-1 focus:ring-brand"
+    >
+      Obriši
+    </button>
+  </div>
+</td>

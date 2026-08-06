@@ -16,6 +16,14 @@ export class RoomService {
     return this.http.post<Room>(this.apiUrl, data);
   }
 
+  updateRoom(id: string, data: RoomFormData): Observable<Room> {
+    return this.http.put<Room>(`${this.apiUrl}/${id}`, data);
+  }
+
+  deleteRoom(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
   getPrice(numberOfNights: number, booking: RoomBookingInput): number {
     const amenityTotal =
       (booking.bazen ? 25 : 0) +

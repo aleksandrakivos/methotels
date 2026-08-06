@@ -209,12 +209,21 @@
     ></textarea>
   </div>
 
-  <div class="sm:col-span-2">
+  <div class="sm:col-span-2 flex flex-wrap gap-2">
     <button
       type="submit"
       class="rounded-sm bg-brand px-3 py-1 text-sm font-medium text-white hover:bg-brand-dark focus:outline-none focus:ring-1 focus:ring-brand focus:ring-offset-1"
     >
-      Dodaj sobu
+      {{ isEditing() ? 'Sačuvaj izmene' : 'Dodaj sobu' }}
     </button>
+    @if (isEditing()) {
+      <button
+        type="button"
+        (click)="cancelEdit()"
+        class="rounded-sm border border-neutral-200 bg-white px-3 py-1 text-sm font-medium text-neutral-700 hover:bg-neutral-50 focus:outline-none focus:ring-1 focus:ring-brand focus:ring-offset-1"
+      >
+        Otkaži
+      </button>
+    }
   </div>
 </form>

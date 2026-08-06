@@ -55,9 +55,14 @@
       aria-labelledby="room-form-heading"
     >
       <h2 id="room-form-heading" class="text-sm font-semibold text-neutral-900 mb-2">
-        Dodaj novi smeštaj
+        {{ editingRoom() ? 'Izmeni smeštaj' : 'Dodaj novi smeštaj' }}
       </h2>
-      <app-room-form (roomSubmitted)="addNewRoom($event)" />
+      <app-room-form
+        [editingRoom]="editingRoom()"
+        (roomSubmitted)="addNewRoom($event)"
+        (roomUpdated)="updateRoom($event)"
+        (editCancelled)="cancelEdit()"
+      />
     </section>
 
     <section
@@ -67,7 +72,11 @@
       <h2 id="room-list-heading" class="text-sm font-semibold text-neutral-900 mb-2">
         Lista smeštaja
       </h2>
-      <app-room-list [rooms]="rooms()" />
+      <app-room-list
+        [rooms]="rooms()"
+        (editRoom)="startEdit($event)"
+        (deleteRoom)="deleteRoom($event)"
+      />
     </section>
   </main>
 </div>
