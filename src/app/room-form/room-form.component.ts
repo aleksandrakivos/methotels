@@ -1,4 +1,4 @@
-import { Component, effect, output, signal } from '@angular/core';
+import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import {
   form,
   FormField,
@@ -6,12 +6,14 @@ import {
   validate,
 } from '@angular/forms/signals';
 import { RoomFormData, ROOM_TYPE_LABELS, ROOM_TYPES, RoomType } from '../models/room.model';
+import { RoomService } from '../services/room.service';
 
 interface RoomFormModel {
   name: string;
   type: RoomType | '';
   price: number;
   bedCount: number;
+  numberOfNights: number;
   description: string;
   bazen: boolean;
   miniBar: boolean;
@@ -25,6 +27,7 @@ const emptyFormModel = (): RoomFormModel => ({
   type: '',
   price: 0,
   bedCount: 1,
+  numberOfNights: 1,
   description: '',
   bazen: false,
   miniBar: false,
@@ -44,6 +47,8 @@ interface FormFieldState {
   templateUrl: './room-form.component.html',
 })
 export class RoomFormComponent {
+  private readonly roomService = inject(RoomService);
+
   readonly roomSubmitted = output<RoomFormData>();
 
   protected readonly roomTypes = ROOM_TYPES;
@@ -68,6 +73,33 @@ export class RoomFormComponent {
         return { kind: 'positiveNumber', message: 'Broj kreveta mora biti pozitivan broj.' };
       }
       return null;
+    });
+    required(schema.numberOfNights, { message: 'Broj noći je obavezan.' });
+    validate(schema.numberOfNights, ({ value }) => {
+      const numberOfNights = value();
+      if (typeof numberOfNights !== 'number' || Number.isNaN(numberOfNights) || numberOfNights <= 0) {
+        return { kind: 'positiveNumber', message: 'Broj noći mora biti pozitivan broj.' };
+      }
+      return null;
+    });
+  });
+
+  protected readonly calculatedPrice = computed(() => {
+    const data = this.formModel();
+    const nightsField = this.roomForm.numberOfNights();
+    const priceField = this.roomForm.price();
+
+    if (nightsField.errors().length > 0 || priceField.errors().length > 0) {
+      return null;
+    }
+
+    return this.roomService.getPrice(data.numberOfNights, {
+      pricePerNight: data.price,
+      bazen: data.bazen,
+      miniBar: data.miniBar,
+      sauna: data.sauna,
+      konferencijskaSala: data.konferencijskaSala,
+      vecera: data.vecera,
     });
   });
 

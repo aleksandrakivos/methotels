@@ -18,3 +18,12 @@ export interface Room {
 }
 
 export type RoomFormData = Omit<Room, 'id'>;
+
+export interface RoomBookingInput {
+  pricePerNight: number;
+  bazen: boolean;
+  miniBar: boolean;
+  sauna: boolean;
+  konferencijskaSala: boolean;
+  vecera: boolean;
+}
