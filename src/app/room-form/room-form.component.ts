@@ -125,12 +125,25 @@ export class RoomFormComponent {
     }
 
     const data = this.formModel();
+    const totalPrice = this.calculatedPrice();
+
+    if (totalPrice === null) {
+      return;
+    }
+
     this.roomSubmitted.emit({
       name: data.name,
       type: data.type as RoomType,
       price: data.price,
       bedCount: data.bedCount,
+      numberOfNights: data.numberOfNights,
+      totalPrice,
       description: data.description,
+      bazen: data.bazen,
+      miniBar: data.miniBar,
+      sauna: data.sauna,
+      konferencijskaSala: data.konferencijskaSala,
+      vecera: data.vecera,
     });
 
     this.resetForm();

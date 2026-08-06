@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { ROOM_TYPE_LABELS, Room } from '../models/room.model';
+import { Component, computed, input } from '@angular/core';
+import { getActiveAmenityLabels, ROOM_TYPE_LABELS, Room } from '../models/room.model';
 
 @Component({
   selector: 'tr[app-room-item]',
@@ -13,4 +13,7 @@ export class RoomItemComponent {
   readonly room = input.required<Room>();
 
   protected readonly roomTypeLabels = ROOM_TYPE_LABELS;
+  protected readonly activeAmenities = computed(() =>
+    getActiveAmenityLabels(this.room()).join(', ') || '—',
+  );
 }
