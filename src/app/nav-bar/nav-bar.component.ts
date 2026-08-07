@@ -1,21 +1,22 @@
-import { Component, input, output } from '@angular/core';
-import { HomeSection } from '../models/home-section.model';
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+interface NavLink {
+  path: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-nav-bar',
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-bar.component.html',
 })
 export class NavBarComponent {
-  readonly activeSection = input.required<HomeSection>();
-  readonly sectionChange = output<HomeSection>();
-
-  protected readonly sections: { id: HomeSection; label: string }[] = [
-    { id: 'ponuda', label: 'Ponuda' },
-    { id: 'preporuka', label: 'Preporuka' },
-    { id: 'o-nama', label: 'O nama' },
+  protected readonly links: NavLink[] = [
+    { path: '/ponuda', label: 'Ponuda' },
+    { path: '/preporuka', label: 'Preporuka' },
+    { path: '/o-nama', label: 'O nama' },
+    { path: '/forma', label: 'Forma za unos soba' },
+    { path: '/lista-smestaja', label: 'Lista smeštaja' },
   ];
-
-  selectSection(section: HomeSection): void {
-    this.sectionChange.emit(section);
-  }
 }

@@ -1,1 +1,21 @@
-<router-outlet />
+<div class="min-h-screen bg-white">
+  <header class="border-b border-brand bg-white">
+    <div class="flex items-center gap-2 px-3 py-2">
+      <div
+        class="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-brand text-[10px] font-bold tracking-wider text-white"
+        aria-hidden="true"
+      >
+        MH
+      </div>
+      <h1 class="text-base font-semibold tracking-tight">
+        <span class="text-brand">Met</span><span class="text-neutral-900">Hotels</span>
+      </h1>
+    </div>
+  </header>
+
+  <main class="px-3 py-3 space-y-3">
+    <app-nav-bar />
+
+    <router-outlet />
+  </main>
+</div>

@@ -1,22 +1,96 @@
-<div class="space-y-2 text-sm">
-  <h3 class="font-semibold text-neutral-900">{{ hotelInfo.name }}</h3>
-  <p class="text-xs text-neutral-600">{{ hotelInfo.description }}</p>
-  <dl class="grid gap-1 text-xs">
-    <div class="flex gap-2">
-      <dt class="font-medium text-neutral-700 shrink-0">Adresa:</dt>
-      <dd class="text-neutral-600">{{ hotelInfo.address }}</dd>
-    </div>
-    <div class="flex gap-2">
-      <dt class="font-medium text-neutral-700 shrink-0">Telefon:</dt>
-      <dd class="text-neutral-600">{{ hotelInfo.phone }}</dd>
-    </div>
-    <div class="flex gap-2">
-      <dt class="font-medium text-neutral-700 shrink-0">Email:</dt>
-      <dd class="text-neutral-600">{{ hotelInfo.email }}</dd>
-    </div>
-    <div class="flex gap-2">
-      <dt class="font-medium text-neutral-700 shrink-0">Radno vreme:</dt>
-      <dd class="text-neutral-600">{{ hotelInfo.workingHours }}</dd>
-    </div>
-  </dl>
+<div class="space-y-4 text-sm">
+  <header class="space-y-1">
+    <h3 class="font-semibold text-neutral-900">{{ hotelInfo.name }}</h3>
+    <p class="text-xs font-medium text-brand">{{ hotelInfo.tagline }}</p>
+    <p class="text-xs text-neutral-600">{{ hotelInfo.description }}</p>
+    <p class="text-xs text-neutral-600">{{ hotelInfo.longDescription }}</p>
+  </header>
+
+  <section aria-labelledby="about-stats-heading">
+    <h4 id="about-stats-heading" class="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-700">
+      U brojkama
+    </h4>
+    <dl class="grid gap-2 sm:grid-cols-2">
+      @for (item of highlights; track item.label) {
+        <div class="rounded-sm border border-neutral-200 bg-brand-muted px-2 py-1.5">
+          <dt class="text-[10px] font-medium uppercase tracking-wide text-neutral-500">
+            {{ item.label }}
+          </dt>
+          <dd class="text-xs text-neutral-800">{{ item.value }}</dd>
+        </div>
+      }
+      <div class="rounded-sm border border-neutral-200 bg-brand-muted px-2 py-1.5">
+        <dt class="text-[10px] font-medium uppercase tracking-wide text-neutral-500">Osnovan</dt>
+        <dd class="text-xs text-neutral-800">{{ hotelInfo.founded }}</dd>
+      </div>
+      <div class="rounded-sm border border-neutral-200 bg-brand-muted px-2 py-1.5">
+        <dt class="text-[10px] font-medium uppercase tracking-wide text-neutral-500">Kapacitet</dt>
+        <dd class="text-xs text-neutral-800">{{ hotelInfo.rooms }}</dd>
+      </div>
+      <div class="rounded-sm border border-neutral-200 bg-brand-muted px-2 py-1.5 sm:col-span-2">
+        <dt class="text-[10px] font-medium uppercase tracking-wide text-neutral-500">Ocena gostiju</dt>
+        <dd class="text-xs text-neutral-800">{{ hotelInfo.rating }}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="about-amenities-heading">
+    <h4 id="about-amenities-heading" class="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-700">
+      Sadržaji hotela
+    </h4>
+    <ul class="grid gap-1 sm:grid-cols-2" role="list">
+      @for (amenity of amenities; track amenity) {
+        <li class="flex items-start gap-1.5 text-xs text-neutral-600">
+          <span class="mt-0.5 text-brand" aria-hidden="true">•</span>
+          {{ amenity }}
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section aria-labelledby="about-values-heading">
+    <h4 id="about-values-heading" class="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-700">
+      Zašto MetHotels
+    </h4>
+    <ul class="space-y-2" role="list">
+      @for (value of values; track value.title) {
+        <li class="rounded-sm border border-neutral-200 p-2">
+          <h5 class="text-xs font-semibold text-neutral-900">{{ value.title }}</h5>
+          <p class="mt-0.5 text-xs text-neutral-600">{{ value.description }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section aria-labelledby="about-contact-heading">
+    <h4 id="about-contact-heading" class="mb-2 text-xs font-semibold uppercase tracking-wide text-neutral-700">
+      Kontakt i informacije
+    </h4>
+    <dl class="grid gap-1 text-xs">
+      <div class="flex gap-2">
+        <dt class="shrink-0 font-medium text-neutral-700">Adresa:</dt>
+        <dd class="text-neutral-600">{{ hotelInfo.address }}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="shrink-0 font-medium text-neutral-700">Telefon:</dt>
+        <dd class="text-neutral-600">{{ hotelInfo.phone }}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="shrink-0 font-medium text-neutral-700">Email:</dt>
+        <dd class="text-neutral-600">{{ hotelInfo.email }}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="shrink-0 font-medium text-neutral-700">Radno vreme:</dt>
+        <dd class="text-neutral-600">{{ hotelInfo.workingHours }}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="shrink-0 font-medium text-neutral-700">Check-in / Check-out:</dt>
+        <dd class="text-neutral-600">{{ hotelInfo.checkIn }} / {{ hotelInfo.checkOut }}</dd>
+      </div>
+      <div class="flex gap-2">
+        <dt class="shrink-0 font-medium text-neutral-700">Parking:</dt>
+        <dd class="text-neutral-600">{{ hotelInfo.parking }}</dd>
+      </div>
+    </dl>
+  </section>
 </div>

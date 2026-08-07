@@ -20,15 +20,30 @@
       "type": "studio",
       "price": 60,
       "bedCount": 1,
-      "numberOfNights": 1,
-      "totalPrice": 60,
+      "numberOfNights": 3,
+      "totalPrice": 180,
+      "description": "Studio sa jenim bracnim lezajem",
       "bazen": false,
       "miniBar": false,
       "sauna": false,
       "konferencijskaSala": false,
       "vecera": false,
-      "description": "Studio sa jenim bracnim lezajem",
       "id": "-_jkzru6tD0"
+    },
+    {
+      "name": "Apartman 12",
+      "type": "studio",
+      "price": 50,
+      "bedCount": 2,
+      "numberOfNights": 2,
+      "totalPrice": 210,
+      "description": "/",
+      "bazen": true,
+      "miniBar": false,
+      "sauna": false,
+      "konferencijskaSala": false,
+      "vecera": true,
+      "id": "NoMGgNb8V6c"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,26 +1,19 @@
 <nav aria-label="Glavna navigacija">
-  <div
-    class="flex gap-1 border border-neutral-200 bg-white rounded-sm p-1"
-    role="tablist"
-    aria-label="Sekcije sajta"
+  <ul
+    class="flex flex-wrap gap-1 rounded-sm bg-brand p-1"
+    role="list"
   >
-    @for (section of sections; track section.id) {
-      <button
-        type="button"
-        role="tab"
-        [id]="'tab-' + section.id"
-        [attr.aria-selected]="activeSection() === section.id"
-        [attr.aria-controls]="'panel-' + section.id"
-        [attr.aria-current]="activeSection() === section.id ? 'page' : null"
-        [class]="
-          activeSection() === section.id
-            ? 'flex-1 rounded-sm bg-brand px-3 py-1.5 text-sm font-medium text-white'
-            : 'flex-1 rounded-sm px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-brand-muted focus:outline-none focus:ring-1 focus:ring-brand'
-        "
-        (click)="selectSection(section.id)"
-      >
-        {{ section.label }}
-      </button>
+    @for (link of links; track link.path) {
+      <li class="flex-1 min-w-[8rem]">
+        <a
+          [routerLink]="link.path"
+          routerLinkActive
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="block rounded-sm px-3 py-1.5 text-center text-sm font-medium text-white hover:bg-brand-muted hover:text-neutral-900 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-brand [&.router-link-active]:bg-brand-muted [&.router-link-active]:text-neutral-900 [&.router-link-active]:hover:bg-brand-muted [&.router-link-active]:hover:text-neutral-900"
+        >
+          {{ link.label }}
+        </a>
+      </li>
     }
-  </div>
+  </ul>
 </nav>
