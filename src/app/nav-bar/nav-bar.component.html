@@ -1,15 +1,13 @@
 <nav aria-label="Glavna navigacija">
-  <ul
-    class="flex flex-wrap gap-1 rounded-sm bg-brand p-1"
-    role="list"
-  >
+  <ul class="flex flex-wrap items-center gap-4" role="list">
     @for (link of links; track link.path) {
-      <li class="flex-1 min-w-[8rem]">
+      <li>
         <a
           [routerLink]="link.path"
-          routerLinkActive
+          routerLinkActive="nav-link-active"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="block rounded-sm px-3 py-1.5 text-center text-sm font-medium text-white hover:bg-brand-muted hover:text-neutral-900 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-brand [&.router-link-active]:bg-brand-muted [&.router-link-active]:text-neutral-900 [&.router-link-active]:hover:bg-brand-muted [&.router-link-active]:hover:text-neutral-900"
+          ariaCurrentWhenActive="page"
+          class="nav-link"
         >
           {{ link.label }}
         </a>

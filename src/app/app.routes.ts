@@ -25,12 +25,6 @@ export const routes: Routes = [
     title: 'O nama — MetHotels',
   },
   {
-    path: 'forma',
-    loadComponent: () =>
-      import('./pages/room-form-page.component').then((m) => m.RoomFormPageComponent),
-    title: 'Forma za unos soba — MetHotels',
-  },
-  {
     path: 'lista-smestaja',
     loadComponent: () =>
       import('./pages/room-list-page.component').then((m) => m.RoomListPageComponent),

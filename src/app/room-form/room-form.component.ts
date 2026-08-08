@@ -64,6 +64,8 @@ export class RoomFormComponent {
   private readonly roomService = inject(RoomService);
 
   readonly editingRoom = input<Room | null>(null);
+  readonly addSuccess = input(false);
+  readonly updateSuccess = input(false);
   readonly roomSubmitted = output<RoomFormData>();
   readonly roomUpdated = output<{ id: string; data: RoomFormData }>();
   readonly editCancelled = output<void>();

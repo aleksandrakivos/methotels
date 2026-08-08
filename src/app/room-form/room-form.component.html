@@ -225,5 +225,15 @@
         Otkaži
       </button>
     }
+    @if (addSuccess() && !isEditing()) {
+      <p class="w-full text-xs text-brand" role="status" aria-live="polite">
+        Smeštaj je uspešno dodat u tabelu
+      </p>
+    }
+    @if (updateSuccess() && isEditing()) {
+      <p class="w-full text-xs text-brand" role="status" aria-live="polite">
+        Izmene su uspešno sačuvane
+      </p>
+    }
   </div>
 </form>

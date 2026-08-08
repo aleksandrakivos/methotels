@@ -16,7 +16,6 @@ export class NavBarComponent {
     { path: '/ponuda', label: 'Ponuda' },
     { path: '/preporuka', label: 'Preporuka' },
     { path: '/o-nama', label: 'O nama' },
-    { path: '/forma', label: 'Forma za unos soba' },
     { path: '/lista-smestaja', label: 'Lista smeštaja' },
   ];
 }

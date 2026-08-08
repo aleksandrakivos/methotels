@@ -15,3 +15,12 @@ body {
 main {
   @apply max-w-5xl mx-auto;
 }
+
+.nav-link {
+  @apply text-base font-medium text-neutral-600 rounded-sm hover:text-brand outline-none;
+}
+
+.nav-link:focus-visible,
+.nav-link-active {
+  @apply text-brand font-semibold underline underline-offset-4 decoration-brand;
+}
